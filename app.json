@@ -1,6 +1,6 @@
 {
-    "name": "slam-mirrorbot ",
-    "description": "Telegram mirror bot with python",
+    "name": "slam-mirrorbot",
+    "description": "A Telegram bot for all your mirror needs",
     "logo": "https://telegra.ph/file/6507910fd06d18dfaba82.jpg",
     "keywords": [
       "bot",
@@ -8,14 +8,14 @@
       "python"
     ],
     "repository": "https://github.com/breakdowns/slam-mirrorbot",
-    "website": "https://t.me/SlamMirrorSupport",
-    "success_url": "https://github.com/breakdowns/slam-mirrorbot/blob/master/README.md",
+    "website": "https://github.com/breakdowns/slam-mirrorbot",
+    "success_url": "https://t.me/SlamMirrorSupport",
     "stack": "container",
     "env": {
       "ENV": {
-      "description": "Setting this to ANYTHING will enable Webhooks when in env mode",
-      "value": "ANYTHING"
-    },
+        "description": "Setting this to ANYTHING will enable Webhooks when in env mode",
+        "value": "ANYTHING"
+      },
       "BOT_TOKEN": {
         "description": "The telegram bot token that you get from @BotFather.",
         "required": true
@@ -26,7 +26,7 @@
       },
       "DOWNLOAD_DIR": {
         "description": "The path to the local folder where the downloads should be downloaded to.",
-        "value": "/home/username/mirror-bot/downloads",
+        "value": "/usr/src/app/downloads",
         "required": false
       },
       "DOWNLOAD_STATUS_UPDATE_INTERVAL": {
@@ -47,23 +47,27 @@
         "required": false
       },
       "USE_SERVICE_ACCOUNTS": {
-        "description": "Whether to use service accounts or not. For this to work see 'Using service accounts' in repo.",
+        "description": "Whether to use Service Accounts or not. For this to work see 'Using Service Accounts' in repo.",
         "required": false
       },
       "AUTHORIZED_CHATS": {
-        "description": "Fill User ID and Chat ID of you want to authorize.",
+        "description": "Fill User ID and Chat ID of you want to authorize, Seprate them with space.",
+        "required": false
+      },
+      "SUDO_USERS": {
+        "description": "Fill user_id (not username) of you want to sudoers, Seprate them with space.",
         "required": false
       },
       "INDEX_URL": {
-        "description": "Refer to https://github.com/maple3142/GDIndex/ The URL should not have any trailing '/'.",
+        "description": "Refer to https://gitlab.com/ParveenBhadooOfficial/Google-Drive-Index The URL should not have any trailing '/'.",
         "required": false
       },
       "TELEGRAM_API": {
-        "description": "This is to authenticate to your telegram account for downloading Telegram files. You can get this from https://my.telegram.org.",
+        "description": "This is to authenticate to your Telegram account for downloading Telegram files. You can get this from https://my.telegram.org.",
         "required": true
       },
       "TELEGRAM_HASH": {
-        "description": "This is to authenticate to your telegram account for downloading Telegram files. You can get this from https://my.telegram.org.",
+        "description": "This is to authenticate to your Telegram account for downloading Telegram files. You can get this from https://my.telegram.org.",
         "required": true
       },
       "HEROKU_API_KEY": {
@@ -74,8 +78,18 @@
         "description": "Add the Heroku app name here.",
         "required": true
       },
+      "UPSTREAM_REPO": {
+        "description": "Link for Bot Upstream Repo, If you want default update, Fill https://github.com/breakdowns/slam-mirrorbot.",
+        "value": "https://github.com/breakdowns/slam-mirrorbot",
+        "required": true
+      },
+      "UPSTREAM_BRANCH": {
+        "description": "Branch name for Upstream Repo (Recommended using master branch).",
+        "value": "master",
+        "required": true
+      },
       "UPTOBOX_TOKEN": {
-        "description": "Uptobox token to mirror uptobox links. Get it from [Uptobox Premium Account](https://uptobox.com/my_account).",
+        "description": "Uptobox premium token to mirror uptobox links. Get it from https://uptobox.com/my_account.",
         "required": false
       },
       "MEGA_API_KEY": {
@@ -98,8 +112,28 @@
         "description": "If you want to remove mega.nz mirror support, set it to True.",
         "required": false
       },
-      "STOP_DUPLICATE_MIRROR": {
-        "description": "If this field is set to True, bot will check file in drive, if it is present in drive, downloading will be stopped.",
+      "TORRENT_DIRECT_LIMIT": {
+        "description": "To limit the Torrent/Direct mirror size, Leave space between number and unit. Available units is (gb or GB, tb or TB).",
+        "required": false
+      },
+      "TAR_UNZIP_LIMIT": {
+        "description": "To limit mirroring as Tar or unzipmirror. Available units is (gb or GB, tb or TB).",
+        "required": false
+      },
+      "CLONE_LIMIT": {
+        "description": "To limit cloning Google Drive (leave space between number and unit, Available units is (gb or GB, tb or TB).",
+        "required": false
+      },
+      "MEGA_LIMIT": {
+        "description": "To limit downloading Mega (leave space between number and unit, Available units is (gb or GB, tb or TB).",
+        "required": false
+      },
+      "STOP_DUPLICATE": {
+        "description": "If this field is set to True, bot will check file in Drive, if it is present in Drive, downloading will be stopped.",
+        "required": false
+      },
+      "IGNORE_PENDING_REQUESTS": {
+        "description": "If you want the bot to ignore pending requests after it restarts, set this to True.",
         "required": false
       },
       "SHORTENER": {
@@ -109,15 +143,20 @@
       "SHORTENER_API": {
         "description": "Fill your shortener api key if you are using shortener.",
         "required": false
-      },
-      "BUTTON_THREE_NAME": {
-        "description": "Extra buttons (optional).",
+       },
+      "TOKEN_PICKLE_URL": {
+        "description": "(Optional) Only if you want to load your token.pickle externally from an index link. Fill this with the direct link of that file.",
         "required": false
       },
-      "BUTTON_THREE_URL": {
-        "description": "Fill your URL if you are using extra buttons.",
+      "ACCOUNTS_ZIP_URL": {
+        "description": "(Optional) Only if you want to load your service accs externally from an index link. Archive your service accs json files to a zip file directly (don't archive the accounts folder. Select all the jsons inside and zip them only instead. Name the zip file with whatever you want, it doesn't matter). Fill this with the direct link of that file.",
         "required": false
       },
+      "VIEW_LINK": {
+        "description": "View Link button to open file Index Link in browser instead of direct download link, you can figure out if it's compatible with your Index code or not, open any video from you Index and check if the END of link from browser link bar is ?a=view, if yes make it True it will work (Compatible with Bhadoo Index Code).",
+        "value": "False",
+        "required": false
+       },
       "BUTTON_FOUR_NAME": {
         "description": "Extra buttons (optional).",
         "required": false
@@ -133,6 +172,30 @@
       "BUTTON_FIVE_URL": {
         "description": "Fill your URL if you are using extra buttons.",
         "required": false
+      },
+      "BUTTON_SIX_NAME": {
+        "description": "Extra buttons (optional).",
+        "required": false
+      },
+      "BUTTON_SIX_URL": {
+        "description": "Fill your URL if you are using extra buttons.",
+        "required": false
+      },
+      "STATUS_LIMIT": {
+        "description": "Status limit with buttons, Recommend limit status to 4 tasks max.",
+        "value": "",
+        "required": false
       }
-    }
+    },
+    "addons": [
+      {
+        "plan": "heroku-postgresql"
+      }
+    ],
+    "formation": {
+            "worker": {
+                "quantity": 1,
+                "size": "free"
+            }
+      }
 }
